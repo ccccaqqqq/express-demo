@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const Schema = mongoose.Schema;
 
@@ -31,6 +32,20 @@ AuthorSchema
   .get(function () {
     return '/catalog/author/' + this._id;
   });
+
+// 虚拟属性'date_of_birth_formatted'：处理过后的出生时间
+AuthorSchema
+  .virtual('date_of_birth_formatted')
+  .get(function(){
+    return this.date_of_birth ? moment(this.date_of_birth).format('MMMM Do, YYYY') : ''
+  })
+
+// 虚拟属性'date_of_death_formatted'：处理过后的逝世时间
+AuthorSchema
+  .virtual('date_of_death_formatted')
+  .get(function(){
+    return this.date_of_death ? moment(this.date_of_death).format('MMMM Do, YYYY') : ''
+  })
 
 // 导出 Author 模型
 module.exports = mongoose.model('Author', AuthorSchema);

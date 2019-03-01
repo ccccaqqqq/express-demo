@@ -2,7 +2,14 @@ const BookInstance = require('../models/bookinstance');
 
 // 显示完整的藏书副本列表
 exports.bookinstance_list = (req, res) => {
-  res.send('未实现：藏书副本列表');
+  BookInstance.find()
+    .populate('book')
+    .exec(function (err, list_bookinstances){
+      if (err){
+        return next(err)
+      }
+      res.render('bookinstance_list', {title: 'Book Instance', bookinstance_list: list_bookinstances})
+    })
 };
 
 // 为藏书的每一本副本显示详细信息的页面

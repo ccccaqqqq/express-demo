@@ -38,4 +38,13 @@ router.get('/books', book_controller.book_list);
 
 /// 藏书副本、藏书种类、作者的路由与藏书路由结构基本一致，只是无需获取主页 ///
 
+// GET 请求完整bookinstance列表
+router.get('/bookinstances', book_instance_controller.bookinstance_list);
+
+// GET 请求完整authors列表
+router.get('/authors', author_controller.author_list);
+
+// GET 请求完整genre列表
+router.get('/genres', genre_controller.genre_list);
+
 module.exports = router;

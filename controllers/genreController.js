@@ -1,8 +1,17 @@
 const Genre = require('../models/genre');
+const Book = require('../models/book');
+
+const async = require('async');
 
 // 显示完整的藏书种类列表
 exports.genre_list = (req, res) => {
-  res.send('未实现：藏书种类列表');
+  Genre.find()
+    .exec(function(err, list_genre){
+      if(err){
+        return next(err)
+      }
+      res.render('genre_list', {title: 'Genre', genre_list: list_genre})
+    })
 };
 
 // 为每一类藏书显示详细信息的页面
