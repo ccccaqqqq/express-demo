@@ -44,7 +44,13 @@ router.get('/bookinstances', book_instance_controller.bookinstance_list);
 // GET 请求完整authors列表
 router.get('/authors', author_controller.author_list);
 
+// GET 请求author具体信息
+router.get('/author/:id', author_controller.author_detail);
+
 // GET 请求完整genre列表
 router.get('/genres', genre_controller.genre_list);
+
+// GET 请求种类详情
+router.get('/genre/:id', genre_controller.genre_detail);
 
 module.exports = router;
