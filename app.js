@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var wikiRouter = require('./routes/wiki');
 var catalogRouter = require('./routes/catalog');
+var loginRouter = require('./routes/login');
+var bodyParser = require('body-parser');
+var multer = require('multer');
 
 var app = express();
 
@@ -20,11 +23,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
+// app.use(multer());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/wiki', wikiRouter);
 app.use('/catalog', catalogRouter);
+app.use('/login', loginRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
